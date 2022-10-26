@@ -117,15 +117,10 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :controller do
     end
 
     context 'when a stricter domain block already exists' do
-      let(:existing_block_domain) { 'bar.com' }
+      let(:existing_block_domain) { 'foo.bar.com' }
 
       it 'returns http unprocessable entity' do
         expect(response).to have_http_status(422)
-      end
-
-      it 'renders existing domain block in error' do
-        json = body_as_json
-        expect(json[:existing_domain_block][:domain]).to eq existing_block_domain
       end
     end
   end
