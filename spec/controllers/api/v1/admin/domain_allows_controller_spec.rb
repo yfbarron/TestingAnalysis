@@ -126,5 +126,15 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
         expect(response).to have_http_status(422)
       end
     end
+
+    context 'with no domain name' do
+      before do
+        post :create
+      end
+
+      it 'returns http unprocessable entity' do
+        expect(response).to have_http_status(422)
+      end
+    end
   end
 end

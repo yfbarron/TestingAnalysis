@@ -19,12 +19,8 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
   def create
     authorize :domain_allow, :create?
 
-    @domain_allow = DomainAllow.find_by(resource_params)
-
-    if @domain_allow.nil?
-      @domain_allow = DomainAllow.create!(resource_params)
-      log_action :create, @domain_allow
-    end
+    @domain_allow = DomainAllow.create!(resource_params)
+    log_action :create, @domain_allow
 
     render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
   end
